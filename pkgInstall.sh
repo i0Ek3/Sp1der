@@ -30,25 +30,39 @@ func commonInstall()
                  gerapy
 }
 
+func brewInstall()
+{
+    brew install imagemagick \
+             tesseract --with-all-languages \ # if this not work well
+             mysql mongodb redis pymysql \ # database
+             mitmproxy \ # catch package
+
+    brew cask install docker
+}
+
 func macInstall()
 {
-    if [ /usr/bin/brew -e false ];
-        then:
-            /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    else:
-        brew install imagemagick \
-                 tesseract --with-all-languages \ # if this not work well
-                 mysql mongodb redis pymysql \ # database
-                 mitmproxy \ # catch package
-
-        brew cask install docker
+    if [ -e /usr/bin/brew ]
+    then
+        brewInstall
+    else
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        brewInstall
     fi
 }
 
 func linuxInstall()
 {
-    
+    # basic install
+    sudo apt install -y \
+        python3-dev build-essential libssl-dev libffi-dev libxml2 libxml2-dev libxslt1-dev zlib1f-dev \
+        tesseract-ocr libtesseract-dev libleptonica-dev \
+        mysql-server mysql-client redis-server
+
+    # install docker
+    curl -sSL https://get.docker.com/ | sh 
 }
+
 
 func otherInstall()
 {
