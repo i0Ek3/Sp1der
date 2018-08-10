@@ -22,7 +22,7 @@ func commonInstall()
                  cchardet aiodns \ # aiohttp needs
                  lxml beautifulsoup4 pyquery \ # interpreter lib
                  tesserocr pillow \ # use for identifying code, if this not work well please install tesserocr from source code
-                 pymongo redis \ # database
+                 pymongo redis pymysql \ # database
                  flask tornado \ # web related
                  mitmproxy \ 
                  pyspider Scrapy scrapyd scrapyd-client scrapy-splash scrapy-redis\ 
@@ -38,6 +38,17 @@ func brewInstall()
              mitmproxy \ # catch package
 
     brew cask install docker
+}
+
+func nodeInstall()
+{
+    if [ -e /usr/bin/npm ]
+    then 
+        npm install -g appium
+    else
+        echo 'Please install node first follow this site: https://nodejs.org/en/download/.'
+        sleep 5
+    fi
 }
 
 func macInstall()
@@ -66,7 +77,19 @@ func linuxInstall()
 
 func otherInstall()
 {
-    gem install redis-dump
+    if [ -e /usr/bin/ruby ] 
+    then
+        gem install redis-dump
+    else
+        echo 'There is no Ruby installed on your system, please install ruby first.'
+        sleep 5
+    fi
+}
+
+func doneNow()
+{
+    echo 'Okay, all of this packages installed done now, you just need to config it a little, enjoy this~'
+    sleep 5
 }
 
 func main()
@@ -75,12 +98,14 @@ func main()
         then
             commonInstall
             linuxInstall
+            doneNow
     elif [ ${type} == "D|drawin" ];
         then
             commonInstall
             macInstall
+            doneNow
     else 
-        echo "I hate Windows! There is no Windows support!"
+        echo "Yes, I hate Windows! There is no Windows support! No way!!"
     fi
 }
 
