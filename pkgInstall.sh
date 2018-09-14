@@ -3,13 +3,20 @@
 ## @ianpasm(kno30826@gmail.com)
 ## 2018-07-26 10:39:45
 ## 
+## 2018-09-14: bug maker, fixme~
+##
+
+
  
 #!/bin/bash
 
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo 'This action will install some necessary packages in your system automatically, please wait a moment....'
 echo 'You should know, this script are not support Windwos and other linux except Ubuntu/Debian and its derive versions!'
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+sleep 5
 
-func type() # detective platform
+func ostype()
 {
     echo $(uname)
 }
@@ -46,7 +53,9 @@ func nodeInstall()
     then 
         npm install -g appium
     else
+        echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo 'Please install node first follow this site: https://nodejs.org/en/download/.'
+        echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         sleep 5
     fi
 }
@@ -62,7 +71,7 @@ func macInstall()
     fi
 }
 
-func linuxInstall()
+function linuxInstall()
 {
     # basic install
     sudo apt install -y \
@@ -81,31 +90,37 @@ func otherInstall()
     then
         gem install redis-dump
     else
+        echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo 'There is no Ruby installed on your system, please install ruby first.'
+        echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         sleep 5
     fi
 }
 
 func doneNow()
 {
+    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
     echo 'Okay, all of this packages installed done now, you just need to config it a little, enjoy this~'
+    echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
     sleep 5
 }
 
 func main()
 {
-    if [ ${type} == "L|linux" ];
+    if [ ${ostype} -e "Linux" ];
         then
             commonInstall
             linuxInstall
             doneNow
-    elif [ ${type} == "D|drawin" ];
+    elif [ ${ostype} -e "Drawin" ];
         then
             commonInstall
             macInstall
             doneNow
     else 
+        echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "Yes, I hate Windows! There is no Windows support! No way!!"
+        echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
     fi
 }
 
