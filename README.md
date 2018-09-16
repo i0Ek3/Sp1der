@@ -31,6 +31,26 @@ There is recommend to read 《图解HTTP》.
 
 ## 0x03 How-To Use Library
 
+* urllib
+
+```Python
+import urllib.request
+
+# grap simple web
+response = urllib.request.urlopen('https://www.python.org')
+print(response.read().decode('utf-8'))
+print(response.status)
+print(type(response))
+
+# grap complicated information
+request = urllib.request.Request('https://python.org')
+response = urllib.request.urlopen(request)
+print(response.read().decode('utf-8'))
+
+# If you want know more about library, please visit https://www.python.org.
+```
+
+* requests
 
 
 ## 0x04 Credit
