@@ -1,19 +1,10 @@
-## 
-## pkgInstall.sh
-## @ianpasm(kno30826@gmail.com)
-## 2018-07-26 10:39:45
-## 
-## 2018-09-14: bug maker, fixme~
-##
-
-
- 
 #!/bin/bash
 
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo 'This action will install some necessary packages in your system automatically, please wait a moment....'
 echo 'You should know, this script are not support Windwos and other linux except Ubuntu/Debian and its derive versions!'
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+
 sleep 5
 
 func ostype()
